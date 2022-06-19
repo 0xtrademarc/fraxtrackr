@@ -1,0 +1,43 @@
+.menu-button {
+    cursor: pointer;
+    color: whitesmoke;
+    border: 1px;
+    padding-left: 15px;
+}
+
+.navbar {
+    background-color: #161617;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+}
+
+.background {
+    width: 100%;
+    background-color: #1f1f21;
+    height: 1000px;
+}
+
+.sidebar-show {
+    background-color: #161617;
+    width: 250px;
+    border-width: 10px;
+    height: calc(100vh - 50px);
+    display: flex;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+}
+
+.sidebar-hide {
+    
+}
+
+.sidebar-list {
+    list-style: none;
+    color: whitesmoke;
+}

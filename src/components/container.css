@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+}
+
+.others {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+    background-color: #1b1c1f;
+    color: whitesmoke;
+}
+
+.others-top-bar{
+    display: flex;
+    height: 80px;
+    background-color: #161617;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    border-left: 1px solid transparent;
+    align-items: center;
+}
+
