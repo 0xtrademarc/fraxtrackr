@@ -1,3 +1,13 @@
+.NonPOLContainer {
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+    border-radius: 10px; 
+    flex: 1;
+    border-radius: 10px; 
+    padding: 30px;
+    margin: 50px 30px 30px 30px;
+}
+
 .dashboard-container {
     display: flex;
     flex-wrap: wrap;
@@ -5,12 +15,23 @@
 }
 
 .dashboard {
-    font-size: 20px;
+    font-size: 18px;
+    flex: 1;
+    border-radius: 10px; 
+    padding: 10px;
+    cursor: pointer;
+    margin: 20px 15px 15px 15px;
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+    background-color: gray;
+}
+
+.CRVContainer {
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+    border-radius: 10px; 
     flex: 1;
     border-radius: 10px; 
     padding: 30px;
-    cursor: pointer;
-    margin: 30px 20px 20px 20px;
-    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
-    box-shadow: 0px 0px 11px -1px #000000;
+    margin: 50px 30px 30px 30px;
 }
