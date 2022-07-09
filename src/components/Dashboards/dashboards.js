@@ -44,8 +44,8 @@ class Dashboards extends React.Component {
 
             const combineddata = res.data;
 
-            console.log(Object.keys(combineddata['liq_staking']))
-            console.log(combineddata["protocol"])
+            //console.log(Object.keys(combineddata['liq_staking']))
+            //console.log(combineddata["protocol"])
 
             var mkt_cap_data = combineddata['core']['frax']['market_cap'];
             var curve_amo_data = combineddata["protocol"]["amo"]["curve"]["curve_related_total"]
@@ -53,18 +53,19 @@ class Dashboards extends React.Component {
             var lending_amo_data = combineddata["protocol"]["amo"]["lending"]["lending_related_total"]
 
             // these only give TVLs. To get value of stable, need to divide by 2 (assumption: uni pools are 50/50)
-            var unifraxusdc = combineddata['liq_staking']['Uniswap V3 FRAX/USDC']['tvl']
-            var unifraxdai = combineddata['liq_staking']['Uniswap V3 FRAX/DAI']['tvl']
-            var saddlenonfraxd4 = combineddata['liq_staking']['Saddle alUSD/FEI/FRAX/LUSD']['tvl']
+           // var unifraxusdc = combineddata['liq_staking']['Uniswap V3 FRAX/USDC']['tvl']
+            //var unifraxdai = combineddata['liq_staking']['Uniswap V3 FRAX/DAI']['tvl']
+            //var saddlenonfraxd4 = combineddata['liq_staking']['Saddle alUSD/FEI/FRAX/LUSD']['tvl']
 
             this.setState({
                 mkt_cap: mkt_cap_data,
                 curve_amo: curve_amo_data,
                 cross_chain_liq: cross_chain_liq_data,
                 lending_amo: lending_amo_data,
-                unifraxdai: unifraxdai,
-                unifraxusdc: unifraxusdc,
-                saddlenonfraxd4: saddlenonfraxd4
+                // COMMENTED OUT BECAUSE TVL DATA IS ASSIGNED IN THE AXIOS.GET BELOW
+                //unifraxdai: unifraxdai,
+                //unifraxusdc: unifraxusdc,
+                //saddlenonfraxd4: saddlenonfraxd4
             })
         }).catch(err => {
             console.log('Error: ', err.message);
@@ -78,9 +79,9 @@ class Dashboards extends React.Component {
 
             const curvedata = res.data;
 
-            console.log(Object.keys(curvedata['data']['poolData']['14']['usdTotal']))
-            console.log(curvedata['data']['poolData']['14']['usdTotal'])
-            console.log(curvedata['data']['poolData']['14']['coins']['0'])
+            //console.log(Object.keys(curvedata['data']['poolData']['14']['usdTotal']))
+            //console.log(curvedata['data']['poolData']['14']['usdTotal'])
+            //console.log(curvedata['data']['poolData']['14']['coins']['0'])
 
             var tvl_data = curvedata['data']['poolData']['34']['usdTotal'];
             var balance_frax = curvedata['data']['poolData']['34']['coins']['0']['poolBalance'];
@@ -103,7 +104,40 @@ class Dashboards extends React.Component {
             console.log('Error: ', err.message);
         });
 
+        axios.get('https://frax-proto-api.herokuapp.com/locked_liquidity')
+        .then(res => {
+            const headerDate = res.headers && res.headers.date ? res.headers.date : 'no response date';
+            console.log('Status Code:', res.status);
+            console.log('Date in Response header:', headerDate);
+
+            const fraxlpdata = res.data;
+
+            console.log(Object.keys(fraxlpdata["Uniswap V3 FRAX/USDC"]['locks']['180'])) 
+            console.log(fraxlpdata["Uniswap V3 FRAX/USDC"]['locks']['180']['balances_usd'][0])
+            console.log(unifraxdai)
+            
+            var unifraxdai = fraxlpdata["Uniswap V3 FRAX/USDC"]['locks']['180']['balances_usd'][1];
+            var unifraxusdc = fraxlpdata["Uniswap V3 FRAX/DAI"]['locks']['180']['balances_usd'][1];
+
+            console.log(unifraxdai)
+            
+
+            this.setState({
+                unifraxdai: unifraxdai,
+                unifraxusdc: unifraxusdc,
+                //saddlenonfraxd4: 
+                
+            })
+
+        
+               
+        }).catch(err => {
+            console.log('Error: ', err.message);
+        });
+
     }
+
+    
 
 
     render() {
